@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Product from "./pages/Product";
 import Pricing from "./pages/Pricing";
 import Homepage from "./pages/Homepage";
@@ -7,6 +7,7 @@ import AppLayout from "./pages/AppLayout";
 import Login from "./pages/Login";
 import CityList from "./components/CityList";
 import City from "./components/City";
+import Form from "./components/Form";
 import { useEffect, useState } from "react";
 import CountryList from "./components/CountryList";
 
@@ -41,10 +42,7 @@ function App() {
         <Route path="pricing" element={<Pricing />} />
         <Route path="login" element={<Login />} />
         <Route path="app" element={<AppLayout />}>
-          <Route
-            index
-            element={<CityList cities={cities} isLoading={isLoading} />}
-          ></Route>
+          <Route index element={<Navigate to="cities" />}></Route>
           <Route
             path="cities"
             element={<CityList cities={cities} isLoading={isLoading} />}
@@ -54,7 +52,7 @@ function App() {
             path="countries"
             element={<CountryList cities={cities} isLoading={isLoading} />}
           ></Route>
-          <Route path="form" element={<p>Form</p>}></Route>
+          <Route path="form" element={<Form />}></Route>
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
